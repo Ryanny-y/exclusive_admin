@@ -14,7 +14,7 @@ const App = () => {
         <Header />
 
         <div className="p-5">
-          Main Content
+          <Outlet />
         </div>
       </section>
     </main>
