@@ -1,15 +1,21 @@
 import { Outlet } from "react-router";
 import SideNav from "./components/common/SideNav";
+import Header from "./components/common/Header";
 
 const App = () => {
 
   // CHECK CREDENTIALS HERE
 
   return (
-    <main className="flex gap-5 dark:bg-dark-200 dark:text-light-100 relative">
+    <main className="flex dark:bg-dark-200 dark:text-light-100 relative">
       <SideNav />
-      <section className="py-5">
-        Main Content
+      
+      <section className="grow">
+        <Header />
+
+        <div className="p-5">
+          Main Content
+        </div>
       </section>
     </main>
   )
