@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import logo from "../../assets/images/exclusive_logo.png";
+import logo from "../../assets/images/exclusive_logo.PNG";
 import { IoHomeOutline, IoAnalyticsOutline } from "react-icons/io5";
 import { LuPackageCheck } from "react-icons/lu";
 import { FaRegClipboard } from "react-icons/fa";

@@ -8,7 +8,7 @@ const Header = () => {
   const { userData } = useContext(AuthContext);
 
   return (
-    <header className="dark:bg-dark-100 flex items-center py-5 px-5 sticky top-0 right-0 left-0 w-full gap-5">
+    <header className="dark:bg-dark-100 flex flex-col sm:flex-row items-center py-5 px-5 sticky top-0 right-0 left-0 w-full gap-5">
       <section className="relative rounded-md dark:bg-gray-200 pl-7 grow">
         <IoSearch className="absolute dark:text-gray-100 top-1/2 -translate-y-1/2 left-3 text-lg"/>
         <input type="text" placeholder="Search" className="w-full dark:bg-gray-200 text-sm py-3 px-3 rounded-lg outline-none"/>
