@@ -6,6 +6,7 @@
 
 .customScrollbar::-webkit-scrollbar {
   width: 8px; /* Adjust scrollbar width */
+  height: 8px;
 }
 
 .customScrollbar::-webkit-scrollbar-thumb {

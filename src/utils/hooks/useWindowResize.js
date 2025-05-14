@@ -3,9 +3,6 @@ import { useState, useEffect } from 'react';
 const useWindowResize = () => {
   const [windowSize, setWindowSize] = useState(window.innerWidth);
 
-  console.log(windowSize);
-  
-
   useEffect(() => {
     const handleResize = () => {
       clearTimeout(window.debounceResizeTimeout);

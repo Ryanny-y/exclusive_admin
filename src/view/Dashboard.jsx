@@ -13,7 +13,7 @@ function Dashboard() {
     <main className="flex flex-col gap-5 p-5">
       <section
         id="card_summaries"
-        className="grid grid-cols-1 xxs:grid-cols-2 md:grid-cols-4 gap-5"
+        className="grid grid-cols-1 xxs:grid-cols-2 lg:grid-cols-4 gap-5"
       >
         <SummaryCard
           title="Total Sales"
@@ -64,10 +64,10 @@ function Dashboard() {
         </div>
 
         {/* SALE BY PRODUCT, SALES BY PRODUCT CATEGORY AND ORDER STATUS*/}
-        <div className="flex flex-col gap-4 md:flex-row">
-          <SaleByProductGraph />
-          <SaleByProductCategoryGraph />
-          <OrderStatusDistributionGraph />
+        <div className="grid grid-cols-3 gap-4">
+              <SaleByProductGraph />
+
+              <SaleByProductCategoryGraph />
         </div>
       </section>
     </main>

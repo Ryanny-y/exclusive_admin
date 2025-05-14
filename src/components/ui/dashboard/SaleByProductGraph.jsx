@@ -4,7 +4,7 @@ const SaleByProductGraph = () => {
   const labels = ["Cellphone", "Keyboard", "Computer", "Headset", "Hat"];
 
   return (
-    <div className="dark:bg-dark-100 p-5 rounded-md shadow-md dark:shadow-gray-300 flex flex-col gap-3 overflow-x-auto flex-1">
+    <div className="dark:bg-dark-100 p-5 rounded-md shadow-md dark:shadow-gray-300 flex flex-col gap-3 overflow-x-auto col-span-2">
       <div className="flex justify-between">
         <h1 className="font-bold text-lg">Top Products</h1>
         <h1 className="text-sm">5 Most Sold Products</h1>
