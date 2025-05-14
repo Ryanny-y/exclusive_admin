@@ -1,19 +1,22 @@
 import { Outlet } from "react-router";
 import SideNav from "./components/common/SideNav";
 import Header from "./components/common/Header";
+import useWindowResize from "./utils/hooks/useWindowResize";
+
 
 const App = () => {
 
   // CHECK CREDENTIALS HERE
+  const windowSize = useWindowResize();
 
   return (
-    <main className="flex dark:bg-dark-200 dark:text-light-100 relative">
+    <main className="flex dark:bg-dark-200 dark:text-light-100">
       <SideNav />
       
-      <section className="grow">
+      <section style={{width: windowSize >= 1024  ? `calc(100% - 288px)` : '100%' }}>
         <Header />
 
-        <div className="p-5">
+        <div>
           <Outlet />
         </div>
       </section>
