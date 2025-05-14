@@ -20,7 +20,7 @@ const App = () => {
 
   return (
     <DashBoardContextProvider>
-      <main className="flex dark:bg-dark-200 dark:text-light-100">
+      <main className="flex bg-dark-200 text-light-100">
         <SideNav />
 
         <section

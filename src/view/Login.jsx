@@ -47,7 +47,7 @@ const Login = () => {
 
   return (
     <>
-      <main className="dark:bg-light-100 h-screen bg-blue-300 flex items-center justify-center">
+      <main className="bg-light-100 h-screen flex items-center justify-center">
         <div className="fixed top-0 left-0 right-0">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
             <path
@@ -58,9 +58,9 @@ const Login = () => {
           </svg>
         </div>
 
-        <div className="bg-light-100 p-8 rounded-lg border darK:border-dark-200 shadow-lg w-96 z-10">
+        <div className="bg-light-100 p-8 rounded-lg border border-dark-200 shadow-lg w-96 z-10">
           <form onSubmit={handleSubmit}>
-            <h1 className="text-3xl font-bold mb-6 text-center dark:text-red-300">Login</h1>
+            <h1 className="text-3xl font-bold mb-6 text-center text-red-300">Login</h1>
 
             <div className="mb-4">
               <label htmlFor="username" className="block text-lg">
@@ -71,7 +71,7 @@ const Login = () => {
                 id="username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                className="w-full p-3 mt-2 border dark:border-gray-300 rounded-md focus:outline-none"
+                className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none"
                 placeholder="Enter your username"
                 required
               />
@@ -94,7 +94,7 @@ const Login = () => {
 
             <button
               type="submit"
-              className="w-full py-3 dark:bg-red-300 text-white rounded-md hover:bg-red-400 duration-300"
+              className="w-full py-3 bg-red-300 text-white rounded-md hover:bg-red-400 duration-300"
             >
               Login
             </button>
