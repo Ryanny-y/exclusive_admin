@@ -12,11 +12,11 @@ const SaleGraph = () => {
     <div className="dark:bg-dark-100 p-5 rounded-md shadow-md dark:shadow-gray-300 flex flex-col gap-3 overflow-x-auto flex-1">
       <div className="flex justify-between">
         <h1 className="font-bold text-lg">Sales</h1>
-        <h1 className="font-sm">Last 10 Days</h1>
+        <h1 className="text-sm">Last 10 Days</h1>
       </div>
 
       <div className="h-full flex justify-center">
-        <LineChart />
+        <LineChart labels={labels} dataValues={[0, 3, 1, 2, 66, 2, 10]}/>
       </div>
     </div>
   );

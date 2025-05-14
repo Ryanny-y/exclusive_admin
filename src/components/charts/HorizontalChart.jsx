@@ -2,50 +2,54 @@ import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
-  PointElement,
-  LineElement,
+  BarElement,
   Title,
   Tooltip,
   Legend,
 } from "chart.js";
-import { Line } from "react-chartjs-2";
-import dayjs from "dayjs";
+import { Bar } from "react-chartjs-2";
 
 ChartJS.register(
   CategoryScale,
   LinearScale,
-  PointElement,
-  LineElement,
+  BarElement,
   Title,
   Tooltip,
   Legend
 );
 
-const LineGraph = ({ labels, dataValues }) => {
-
+function HorizontalBarChart({ labels, dataValues }) {
   const data = {
     labels,
     datasets: [
       {
-        label: "Dataset 1",
+        label: "Sales",
         data: dataValues,
-        borderColor: "#3062e1",
-        backgroundColor: "#3159d3",
+        backgroundColor: "#3062e1",
+        barThickness: 15,
       },
     ],
   };
 
   const options = {
+    indexAxis: "y",
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
       legend: {
         display: false,
-      }
+      },
+    },
+    scales: {
+      x: {
+        ticks: {
+          stepSize: 1,
+        },
+      },
     },
   };
 
-  return <Line data={data} options={options} />;
-};
+  return <Bar data={data} options={options} />;
+}
 
-export default LineGraph;
+export default HorizontalBarChart;

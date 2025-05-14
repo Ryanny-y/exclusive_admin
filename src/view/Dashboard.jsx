@@ -4,14 +4,16 @@ import { FaRegClipboard } from "react-icons/fa";
 import { BsPeople } from "react-icons/bs";
 import { LuPackageCheck } from "react-icons/lu";
 import SaleGraph from "../components/ui/dashboard/SaleGraph";
-import LineChart from "../components/charts/LineChart";
+import SaleByProductGraph from "../components/ui/dashboard/SaleByProductGraph";
+import SaleByProductCategoryGraph from "../components/ui/dashboard/SaleByProductCategoryGraph";
+import OrderStatusDistributionGraph from "../components/ui/dashboard/OrderStatusDistributionGraph";
 
 function Dashboard() {
   return (
     <main className="flex flex-col gap-5 p-5">
       <section
         id="card_summaries"
-        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5"
+        className="grid grid-cols-1 xxs:grid-cols-2 md:grid-cols-4 gap-5"
       >
         <SummaryCard
           title="Total Sales"
@@ -31,11 +33,12 @@ function Dashboard() {
         />
       </section>
 
-      <section id="graphs">
-        <div className="flex flex-col sm:flex-row gap-4">
-          <div className="flex flex-col justify-between gap-5">
-            <div className="dark:bg-dark-100 py-7 pl-8 pr-10 rounded-md shadow-md dark:shadow-gray-300 flex-1">
-              <h6 className="mb-5">New Clients</h6>
+      <section id="charts" className="flex flex-col gap-5">
+        {/* NEW AND SALES CHART */}
+        <div className="flex flex-col md:flex-row gap-4">
+          <div className="flex flex-col xs:flex-row md:flex-col justify-between gap-5">
+            <div className="dark:bg-dark-100 py-7 px-5 md:pl-8 md:pr-10 rounded-md shadow-md dark:shadow-gray-300 flex-1">
+              <h6 className="mb-2">New Clients</h6>
 
               <div className="flex items-center gap-4">
                 <p className="text-5xl font-bold">30</p>
@@ -45,8 +48,8 @@ function Dashboard() {
               </div>
             </div>
 
-            <div className="dark:bg-dark-100 py-7 pl-8 pr-10 rounded-md shadow-md dark:shadow-gray-300 flex-1">
-              <h6 className="mb-5">New Orders</h6>
+            <div className="dark:bg-dark-100 py-7 px-5 md:pl-8 md:pr-10 rounded-md shadow-md dark:shadow-gray-300 flex-1">
+              <h6 className="mb-2">New Orders</h6>
 
               <div className="flex items-center gap-4">
                 <p className="text-5xl font-bold">30</p>
@@ -58,6 +61,13 @@ function Dashboard() {
           </div>
 
           <SaleGraph />
+        </div>
+
+        {/* SALE BY PRODUCT, SALES BY PRODUCT CATEGORY AND ORDER STATUS*/}
+        <div className="flex flex-col gap-4 md:flex-row">
+          <SaleByProductGraph />
+          <SaleByProductCategoryGraph />
+          <OrderStatusDistributionGraph />
         </div>
       </section>
     </main>

@@ -8,5 +8,10 @@
   --color-gray-300: #656567;
   --color-light-100: #fafafc;
   --color-red-300: #db4444;
+
+
+  /* Breakpoints */
+  --breakpoint-xs: 30rem;
+  --breakpoint-xxs: 25rem;
 }
 
