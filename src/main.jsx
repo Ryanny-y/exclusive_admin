@@ -5,6 +5,7 @@ import Dashboard from './view/Dashboard.jsx'
 import Products from './view/Products.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router';
 import App from './App.jsx';
+import Login from './view/Login.jsx'
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,9 @@ const router = createBrowserRouter([
         element: <Products />
       }
     ]
+  }, {
+    path: '/login',
+    element: <Login />
   }
 ])
 
