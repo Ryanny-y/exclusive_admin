@@ -25,7 +25,7 @@ function HorizontalBarChart({ labels, dataValues }) {
       {
         label: "Sales",
         data: dataValues,
-        backgroundColor: "#3062e1",
+        backgroundColor: "#db4444",
         barThickness: 15,
       },
     ],

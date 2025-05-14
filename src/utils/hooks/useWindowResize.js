@@ -6,9 +6,10 @@ const useWindowResize = () => {
   useEffect(() => {
     const handleResize = () => {
       clearTimeout(window.debounceResizeTimeout);
-      window.debounceResizeTimeout = setTimeout(() => {
-        setWindowSize(window.innerWidth);
-      }, 200);
+      // window.debounceResizeTimeout = setTimeout(() => {
+      //   setWindowSize(window.innerWidth);
+      // }, 200);
+      setWindowSize(window.innerWidth);
     };
 
     window.addEventListener('resize', handleResize);

@@ -36,8 +36,8 @@ export default function PieChart({ labels, dataValues}) {
       legend: { 
         position: 'right',
         labels: {
-          boxWidth: 20, // Adjust the box size
-          padding: 15,  // Space between labels
+          boxWidth: 20,
+          padding: 15, 
         } 
       }
     },

@@ -29,8 +29,8 @@ const LineGraph = ({ labels, dataValues }) => {
       {
         label: "Dataset 1",
         data: dataValues,
-        borderColor: "#3062e1",
-        backgroundColor: "#3159d3",
+        borderColor: "#db4444",
+        backgroundColor: "#db4444",
       },
     ],
   };
