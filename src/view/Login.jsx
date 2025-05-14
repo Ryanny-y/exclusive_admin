@@ -39,13 +39,10 @@ const Login = () => {
       const data = await response.json();
       setUserData(data);
       setIsAuthenticated(true);
-      navigate('')
+      navigate('/')
     } catch (error) {
-      console.log(error);
-      
       alert(error);
     }
-
   };
 
   return (

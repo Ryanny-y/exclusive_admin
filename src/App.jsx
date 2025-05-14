@@ -1,4 +1,4 @@
-import { Outlet, Navigate, useNavigate } from "react-router";
+import { Outlet, useNavigate } from "react-router";
 import SideNav from "./components/common/SideNav";
 import Header from "./components/common/Header";
 import useWindowResize from "./utils/hooks/useWindowResize";
