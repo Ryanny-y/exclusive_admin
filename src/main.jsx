@@ -5,6 +5,7 @@ import Dashboard from './view/Dashboard.jsx'
 import Products from './view/Products.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router';
 import App from './App.jsx';
+import AuthProvider from './context/AuthContext.jsx';
 import Login from './view/Login.jsx'
 
 const router = createBrowserRouter([
@@ -28,6 +29,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>,
 )

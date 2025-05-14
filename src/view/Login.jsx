@@ -1,14 +1,51 @@
-import React, { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../context/AuthContext";
+import { useNavigate } from "react-router";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
+  const { setUserData, setIsAuthenticated, backend_uri } = useContext(AuthContext);
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     // Handle login logic here
-    console.log("Email:", email);
-    console.log("Password:", password);
+    if(!username || !password) {
+      alert('Username and Password are required!');
+      return;
+    }
+    
+    try {
+      const response = await fetch(`${backend_uri}/auth`, {
+        method: "POST", 
+        headers: {
+          'Content-type': 'application/json; charset=utf-8',
+        }, 
+        body: JSON.stringify({
+          username, 
+          password
+        })
+      })
+      
+      if(!response.ok) {
+        const responseData = await response.json();
+        console.log(responseData);
+        
+        throw new Error(responseData.error);
+      }
+
+      const data = await response.json();
+      setUserData(data);
+      setIsAuthenticated(true);
+      navigate('')
+    } catch (error) {
+      console.log(error);
+      
+      alert(error);
+    }
+
   };
 
   return (
@@ -29,16 +66,16 @@ const Login = () => {
             <h1 className="text-3xl font-bold mb-6 text-center dark:text-red-300">Login</h1>
 
             <div className="mb-4">
-              <label htmlFor="email" className="block text-lg">
-                Email
+              <label htmlFor="username" className="block text-lg">
+                Username
               </label>
               <input
-                type="email"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                type="username"
+                id="username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 className="w-full p-3 mt-2 border dark:border-gray-300 rounded-md focus:outline-none"
-                placeholder="Enter your email"
+                placeholder="Enter your username"
                 required
               />
             </div>

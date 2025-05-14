@@ -1,12 +1,22 @@
-import { Outlet } from "react-router";
+import { Outlet, Navigate, useNavigate } from "react-router";
 import SideNav from "./components/common/SideNav";
 import Header from "./components/common/Header";
 import useWindowResize from "./utils/hooks/useWindowResize";
-
+import { useContext, useEffect } from "react";
+import {AuthContext} from './context/AuthContext';
 
 const App = () => {
 
-  // CHECK CREDENTIALS HERE
+  const navigate = useNavigate();
+  const { userData, isAuthenticated } = useContext(AuthContext); 
+    // CHECK CREDENTIALS HERE
+  useEffect(() => {
+    if(!userData || !isAuthenticated) {
+      navigate('/login');
+    } 
+  }, [userData, isAuthenticated]);
+  
+
   const windowSize = useWindowResize();
 
   return (
