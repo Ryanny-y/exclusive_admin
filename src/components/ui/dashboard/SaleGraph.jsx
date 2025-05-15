@@ -35,12 +35,12 @@ const SaleGraph = () => {
 
   return (
     <div className="dark:bg-dark-100 p-5 rounded-md shadow-md dark:shadow-gray-300 flex flex-col gap-3 overflow-x-auto flex-1">
-      <div className="flex justify-between">
+      <div className="flex flex-col gap-1 sm:flex-row justify-between">
         <h1 className="font-bold text-lg">Sales</h1>
         <h1 className="text-sm">Last 10 Days</h1>
       </div>
 
-      <div className="h-full flex justify-center">
+      <div className="min-w-[300px] h-full flex justify-center">
         <LineChart labels={labels} dataValues={salesByDay} />
       </div>
     </div>

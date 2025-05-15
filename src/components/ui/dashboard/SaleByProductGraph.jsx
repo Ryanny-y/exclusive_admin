@@ -22,8 +22,6 @@ const SaleByProductGraph = () => {
     if (completedOrders.length > 0 && allProducts.length > 0) {
       const productCountMap = {};
 
-      console.log(completedOrders);
-      
       completedOrders.forEach((item) => {
         const product = allProducts.find((p) => p._id === item.productId);
         
@@ -39,7 +37,6 @@ const SaleByProductGraph = () => {
 
       const topLabels = sorted.map(([name]) => name);
       const topValues = sorted.map(([, count]) => count);
-      console.log(topValues);
 
       setLabels(topLabels);
       setDataValues(topValues);
@@ -48,12 +45,12 @@ const SaleByProductGraph = () => {
 
   return (
     <div className="dark:bg-dark-100 p-5 rounded-md shadow-md dark:shadow-gray-300 flex flex-col gap-3 overflow-x-auto lg:col-span-2">
-      <div className="flex justify-between">
+      <div className="flex flex-col gap-1 xs:flex-row justify-between">
         <h1 className="font-bold text-lg">Top Products</h1>
-        <h1 className="text-sm">5 Most Sold Products</h1>
+        <h1 className="text-sm sm:text-end">5 Most Sold Products</h1>
       </div>
 
-      <div className="h-full flex justify-center">
+      <div className="min-w-[300px] h-full flex justify-center">
         <HorizontalChart labels={labels} dataValues={dataValues} />
       </div>
     </div>

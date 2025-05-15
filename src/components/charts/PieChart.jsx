@@ -1,9 +1,14 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
+import useWindowResize from '../../utils/hooks/useWindowResize';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function PieChart({ labels, dataValues}) {
+
+  const windowSize = useWindowResize();
+
+
   const data = {
     labels: labels, 
     datasets: [
@@ -34,7 +39,7 @@ export default function PieChart({ labels, dataValues}) {
     maintainAspectRation: false,
     plugins: {
       legend: { 
-        position: 'right',
+        position: windowSize <= 330 ? 'bottom' : 'right',
         labels: {
           boxWidth: 20,
           padding: 15, 
