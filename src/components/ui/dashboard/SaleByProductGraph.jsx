@@ -1,8 +1,50 @@
-import HorizontalChart from '../../charts/HorizontalChart';
+import { useContext } from "react";
+import HorizontalChart from "../../charts/HorizontalChart";
+import { DashboardContext } from "../../../context/DashboardContext";
+import { useMemo } from "react";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const SaleByProductGraph = () => {
+  const { allProducts, ordersData } = useContext(DashboardContext);
 
-  const labels = ["Cellphone", "Keyboard", "Computer", "Headset", "Hat"];
+  const completedOrders = useMemo(() => {
+    return ordersData
+      .flatMap((user) => user?.orders)
+      .filter((order) => order?.status === "completed")
+      .flatMap((order) => order?.order_items);
+  }, [ordersData]);
+
+  const [labels, setLabels] = useState([]);
+  const [dataValues, setDataValues] = useState([]);
+
+  useEffect(() => {
+    if (completedOrders.length > 0 && allProducts.length > 0) {
+      const productCountMap = {};
+
+      console.log(completedOrders);
+      
+      completedOrders.forEach((item) => {
+        const product = allProducts.find((p) => p._id === item.productId);
+        
+        if (product) {
+          const name = product.name;
+          productCountMap[name] = (productCountMap[name] || 0) + item.quantity;
+        }
+      });
+
+      const sorted = Object.entries(productCountMap)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 5);
+
+      const topLabels = sorted.map(([name]) => name);
+      const topValues = sorted.map(([, count]) => count);
+      console.log(topValues);
+
+      setLabels(topLabels);
+      setDataValues(topValues);
+    }
+  }, [completedOrders, allProducts]);
 
   return (
     <div className="dark:bg-dark-100 p-5 rounded-md shadow-md dark:shadow-gray-300 flex flex-col gap-3 overflow-x-auto lg:col-span-2">
@@ -12,10 +54,10 @@ const SaleByProductGraph = () => {
       </div>
 
       <div className="h-full flex justify-center">
-        <HorizontalChart labels={labels} dataValues={[1,2,3,4,5]}/>
+        <HorizontalChart labels={labels} dataValues={dataValues} />
       </div>
     </div>
   );
-}
+};
 
 export default SaleByProductGraph;

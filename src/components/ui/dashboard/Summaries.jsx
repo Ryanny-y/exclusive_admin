@@ -7,7 +7,7 @@ import { useContext } from "react";
 import { DashboardContext } from "../../../context/DashboardContext";
 
 const Summaries = () => {
-  const { totalSales, totalOrders, totalCustomers, totalProducts } = useContext(DashboardContext);
+  const { totalSales, allOrders, allCustomers, allProducts } = useContext(DashboardContext);
 
   return (
     <section
@@ -21,17 +21,17 @@ const Summaries = () => {
       />
       <SummaryCard
         title="Total Orders"
-        value={totalOrders.length}
+        value={allOrders.length}
         icon={<FaRegClipboard strokeWidth={2} />}
       />
       <SummaryCard
         title="Total Customers"
-        value={totalCustomers.length}
+        value={allCustomers.length}
         icon={<BsPeople />}
       />
       <SummaryCard
         title="Total Products"
-        value={totalProducts.length}
+        value={allProducts.length}
         icon={<LuPackageCheck strokeWidth={2} />}
       />
     </section>

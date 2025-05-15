@@ -6,41 +6,41 @@ import { DashboardContext } from '../../../context/DashboardContext';
 const NewCardsContainer = () => {
   const today = dayjs();
 
-  const { totalOrders, totalCustomers } = useContext(DashboardContext);
+  const { allOrders, allCustomers } = useContext(DashboardContext);
 
   const newCustomers = useMemo(() => {
-    return totalCustomers.filter((customer) => {
+    return allCustomers.filter((customer) => {
       const { created_at } = customer;
       const newCustomers = today.isSame(dayjs(created_at), "day");
       return newCustomers;
     });
-  }, [totalCustomers]);
+  }, [allCustomers]);
 
   const newOrders = useMemo(() => {
-    return totalOrders
+    return allOrders
       .flatMap((user) => user?.orders)
       .filter((order) => {
         const order_date = order?.order_date;
         const newOrders = today.isSame(dayjs(order_date), "day");
         return newOrders;
       });
-  }, [totalOrders]);
+  }, [allOrders]);
 
   const newCustomerPercent = useMemo(() => {
     const newCustomersLength = newCustomers.length;
-    const customersLength = totalCustomers.length;
+    const customersLength = allCustomers.length;
 
     const percent = (newCustomersLength / customersLength) * 100;
     return percent >= 0 ? percent : 0;
-  }, [newCustomers, totalCustomers])
+  }, [newCustomers, allCustomers])
 
   const newOrdersPercent = useMemo(() => {
     const newOrdersLength = newOrders.length;
-    const ordersDataLength = totalOrders.flatMap(user => user?.orders).flatMap(orders => orders?.order_items).length;
+    const ordersDataLength = allOrders.flatMap(user => user?.orders).flatMap(orders => orders?.order_items).length;
     
     const percent = (newOrdersLength / ordersDataLength) * 100;
     return percent >= 0 ? percent : 0;
-  }, [newOrders, totalOrders]);
+  }, [newOrders, allOrders]);
 
   return (
     <div className="flex flex-col xs:flex-row md:flex-col justify-between gap-5">

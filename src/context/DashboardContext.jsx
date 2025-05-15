@@ -13,28 +13,29 @@ export default function DashBoardContextProvider({ children }) {
       .flatMap((user) => user.orders)
       .filter((order) => order.status === "completed")
       .flatMap((order) => order.order_items)
-      .reduce((acc, item) => acc + item.subtotal, 0);
+      .reduce((acc, item) => acc + item.subtotal, 0) || 0;
   }, [ordersData]);
 
-  const totalOrders = useMemo(() => {
+  const allOrders = useMemo(() => {
     return ordersData
       .flatMap((user) => user.orders)
-      .flatMap((order) => order.order_items);
+      .flatMap((order) => order.order_items) || [];
   }, [ordersData]);
 
-  const totalCustomers = useMemo(() => {
-    return customerData;
+  const allCustomers = useMemo(() => {
+    return customerData || [];
   }, [customerData]);
 
-  const totalProducts = useMemo(() => {
-    return productData;
+  const allProducts = useMemo(() => {
+    return productData || 0;
   }, [productData]);
 
   const value = {
+    ordersData,
     totalSales,
-    totalOrders,
-    totalCustomers,
-    totalProducts,
+    allOrders,
+    allCustomers,
+    allProducts,
   };
 
   return (
