@@ -7,43 +7,31 @@ import { useEffect, useMemo } from "react";
 import useFetchData from "../../../utils/hooks/useFetchdata";
 
 const Summaries = () => {
-  const {
-    data: ordersData,
-    loading: ordersLoading,
-    error: ordersError,
-  } = useFetchData(`orders/all`);
-  const {
-    data: customerData,
-    loading: customerLoading,
-    error: customerError,
-  } = useFetchData(`user/all`);
-  const {
-    data: productData,
-    loading: productLoading,
-    error: productError,
-  } = useFetchData(`products`);
+  const { data: ordersData } = useFetchData(`orders/all`);
+  const { data: customerData } = useFetchData(`user/all`);
+  const { data: productData } = useFetchData(`products`);
 
   const totalSales = useMemo(() => {
     return ordersData
-    .flatMap(user => user.orders)
-    .filter(order => order.status === "completed")
-    .flatMap(order => order.order_items)
-    .reduce((acc, item) => acc + item.subtotal, 0);
-  }, [ordersData, ordersLoading, ordersError]);
+      .flatMap((user) => user.orders)
+      .filter((order) => order.status === "completed")
+      .flatMap((order) => order.order_items)
+      .reduce((acc, item) => acc + item.subtotal, 0);
+  }, [ordersData]);
 
   const totalOrders = useMemo(() => {
     return ordersData
-    .flatMap(user => user.orders)
-    .flatMap(order => order.order_items);
-  }, [ordersData, ordersLoading, ordersError]);
+      .flatMap((user) => user.orders)
+      .flatMap((order) => order.order_items);
+  }, [ordersData]);
 
   const totalCustomers = useMemo(() => {
     return customerData;
-  }, [customerData, customerLoading, customerError]);
+  }, [customerData]);
 
   const totalProducts = useMemo(() => {
     return productData;
-  }, [productData, productLoading, productError]);
+  }, [productData]);
 
   return (
     <section
@@ -52,7 +40,7 @@ const Summaries = () => {
     >
       <SummaryCard
         title="Total Sales"
-        value={totalSales}
+        value={`₱ ${totalSales}`}
         icon={<IoAnalyticsOutline strokeWidth={2} />}
       />
       <SummaryCard

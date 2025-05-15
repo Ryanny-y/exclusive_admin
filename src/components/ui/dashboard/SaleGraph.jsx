@@ -1,11 +1,36 @@
+import { useMemo } from "react";
+import useFetchData from "../../../utils/hooks/useFetchdata";
 import LineChart from "../../charts/LineChart";
 import dayjs from "dayjs";
 
 const SaleGraph = () => {
+  const today = dayjs();
+
+  const { data: ordersData } = useFetchData(`orders/all`);
+
+  const salesByDay = useMemo(() => {
+    if (!ordersData || ordersData.length === 0) return Array(10).fill(0);
+
+    const days = Array.from({ length: 10 }, (_, i) =>
+      today.subtract(9 - i, "day").startOf("day")
+    );
+
+    return days.map((day) => {
+      const total = ordersData
+        .flatMap((user) => user.orders)
+        .filter((order) => order.status === "completed")
+        .filter((order) =>
+          day.isSame(dayjs(order.order_date).startOf("day"), "day")
+        )
+        .flatMap((order) => order.order_items)
+        .reduce((sum, item) => sum + item.subtotal, 0);
+
+      return total;
+    });
+  }, [ordersData]);
+
   const labels = Array.from({ length: 10 }, (v, i) =>
-    dayjs()
-      .subtract(9 - i, "day")
-      .format("MMM D")
+    today.subtract(9 - i, "day").format("MMM D")
   );
 
   return (
@@ -16,7 +41,7 @@ const SaleGraph = () => {
       </div>
 
       <div className="h-full flex justify-center">
-        <LineChart labels={labels} dataValues={[0, 3, 1, 2, 66, 2, 10]}/>
+        <LineChart labels={labels} dataValues={salesByDay} />
       </div>
     </div>
   );
