@@ -1,6 +1,7 @@
 import HorizontalChart from '../../charts/HorizontalChart';
 
 const SaleByProductGraph = () => {
+
   const labels = ["Cellphone", "Keyboard", "Computer", "Headset", "Hat"];
 
   return (

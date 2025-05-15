@@ -3,35 +3,11 @@ import { IoAnalyticsOutline } from "react-icons/io5";
 import { BsPeople } from "react-icons/bs";
 import { LuPackageCheck } from "react-icons/lu";
 import { FaRegClipboard } from "react-icons/fa";
-import { useEffect, useMemo } from "react";
-import useFetchData from "../../../utils/hooks/useFetchdata";
+import { useContext } from "react";
+import { DashboardContext } from "../../../context/DashboardContext";
 
 const Summaries = () => {
-  const { data: ordersData } = useFetchData(`orders/all`);
-  const { data: customerData } = useFetchData(`user/all`);
-  const { data: productData } = useFetchData(`products`);
-
-  const totalSales = useMemo(() => {
-    return ordersData
-      .flatMap((user) => user.orders)
-      .filter((order) => order.status === "completed")
-      .flatMap((order) => order.order_items)
-      .reduce((acc, item) => acc + item.subtotal, 0);
-  }, [ordersData]);
-
-  const totalOrders = useMemo(() => {
-    return ordersData
-      .flatMap((user) => user.orders)
-      .flatMap((order) => order.order_items);
-  }, [ordersData]);
-
-  const totalCustomers = useMemo(() => {
-    return customerData;
-  }, [customerData]);
-
-  const totalProducts = useMemo(() => {
-    return productData;
-  }, [productData]);
+  const { totalSales, totalOrders, totalCustomers, totalProducts } = useContext(DashboardContext);
 
   return (
     <section
