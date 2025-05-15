@@ -23,21 +23,18 @@ const Summaries = () => {
     error: productError,
   } = useFetchData(`products`);
 
-  // const totalOrders = useMemo(() => {
-  //   const oneOrder = ordersData.map(order => order.orders);
-  //   console.log(oneOrder);
+  const totalSales = useMemo(() => {
+    return ordersData
+    .flatMap(user => user.orders)
+    .filter(order => order.status === "completed")
+    .flatMap(order => order.order_items)
+    .reduce((acc, item) => acc + item.subtotal, 0);
+  }, [ordersData, ordersLoading, ordersError]);
 
-  // }, []);
-
-  console.log(ordersData);
-  
-  const oneOrder = ordersData.map((order) => order.orders);
-  
-
-  useEffect(() => {
-    const oneOrder = ordersData.map((order) => order.orders);
-    console.log(oneOrder.length);
-
+  const totalOrders = useMemo(() => {
+    return ordersData
+    .flatMap(user => user.orders)
+    .flatMap(order => order.order_items);
   }, [ordersData, ordersLoading, ordersError]);
 
   const totalCustomers = useMemo(() => {
@@ -55,12 +52,12 @@ const Summaries = () => {
     >
       <SummaryCard
         title="Total Sales"
-        value={123}
+        value={totalSales}
         icon={<IoAnalyticsOutline strokeWidth={2} />}
       />
       <SummaryCard
         title="Total Orders"
-        value={13}
+        value={totalOrders.length}
         icon={<FaRegClipboard strokeWidth={2} />}
       />
       <SummaryCard
