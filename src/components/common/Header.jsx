@@ -1,8 +1,12 @@
 import { IoSearch } from "react-icons/io5";
 import { FaBell } from "react-icons/fa";
 import profilePlaceholder from '../../assets/images/profile_placeholder.png';
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 const Header = () => {
+  const { userData } = useContext(AuthContext);
+
   return (
     <header className="dark:bg-dark-100 flex items-center py-5 px-5 sticky top-0 right-0 left-0 w-full gap-5">
       <section className="relative rounded-md dark:bg-gray-200 pl-7 grow">
@@ -12,13 +16,12 @@ const Header = () => {
 
       <section className="flex items-center gap-4">
         <div id="notification">
-
           <FaBell className="text-lg dark:text-gray-100"/>
         </div>
 
         <div id="account" className="flex items-center gap-2">
           <img src={profilePlaceholder} alt="Profile" className="rounded-full h-6 w-6"/>
-          <p className="text-[14px] font-semibold dark:text-gray-100">Ryanny Romero</p>
+          <p className="text-[14px] font-semibold dark:text-gray-100">{userData?.data?.firstName}</p>
         </div>
       </section>
     </header>

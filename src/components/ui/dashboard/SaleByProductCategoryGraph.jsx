@@ -28,14 +28,14 @@ const SaleByProductCategoryGraph = () => {
 
         if (product) {
           const categories = product.category;
-          categories.forEach(category => {
-            productCountMap[category] = (productCountMap[category] || 0) + 1
-          })
+          categories.forEach((category) => {
+            productCountMap[category] = (productCountMap[category] || 0) + 1;
+          });
         }
       });
 
       const sorted = Object.entries(productCountMap)
-        .sort((a, b) => b[1] - a[1])
+        .sort((a, b) => a[1] - b[1])
         .slice(0, 5);
 
       const topLabels = sorted.map(([name]) => name);
