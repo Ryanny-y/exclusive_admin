@@ -2,11 +2,13 @@ import { useMemo } from "react";
 import useFetchData from "../../../utils/hooks/useFetchdata";
 import LineChart from "../../charts/LineChart";
 import dayjs from "dayjs";
+import { useContext } from "react";
+import { DashboardContext } from "../../../context/DashboardContext";
 
 const SaleGraph = () => {
   const today = dayjs();
 
-  const { data: ordersData } = useFetchData(`orders/all`);
+  const { ordersData } = useContext(DashboardContext);
 
   const salesByDay = useMemo(() => {
     if (!ordersData || ordersData.length === 0) return Array(10).fill(0);
